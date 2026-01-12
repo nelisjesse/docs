@@ -1,0 +1,12 @@
+{
+  "name": "ClientBox Docs",
+  "navigation": [
+    {
+      "group": "API Reference",
+      "pages": [
+        "openapi"
+      ]
+    }
+  ],
+  "openapi": "openapi.yaml"
+}
