@@ -10,8 +10,8 @@
     "light": "#FFFFFF",
     "dark": "#000000",
     "anchors": {
-      "from": "#0D99FF",
-      "to": "#0D99FF"
+      "from": "#007DFF",
+      "to": "#007DFF"
     }
   },
   "navigation": [
