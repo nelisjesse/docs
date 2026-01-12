@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ClientBox API",
+    "version": "1.0",
+    "description": "Official API documentation for ClientBox."
+  },
+  "servers": [
+    {
+      "url": "https://api.clientbox.co/api/1.1/wf",
+      "description": "Production API"
+    }
+  ],
+  "paths": {
+    "/create-customer": {
+      "post": {
+        "summary": "Create Customer",
+        "description": "Creates a new customer in ClientBox.",
+        "operationId": "createCustomer",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "first_name",
+                  "last_name"
+                ],
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "example": "John",
+                    "description": "First name"
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "example": "Doe",
+                    "description": "Last name"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "john@example.com",
+                    "description": "Email address"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
