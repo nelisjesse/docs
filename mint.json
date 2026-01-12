@@ -4,20 +4,22 @@
   "colors": {
     "primary": "#0D99FF",
     "light": "#FFFFFF",
-    "dark": "#000000",
-    "anchors": {
-      "from": "#0D99FF",
-      "to": "#0D99FF"
-    }
+    "dark": "#000000"
   },
   "favicon": "/favicon.png",
-  "navigation": [
+  "tabs": [
     {
-      "group": "API Reference",
-      "pages": [
-        "openapi"
-      ]
+      "name": "API Reference",
+      "url": "api-reference"
     }
   ],
+  "navigation": {
+    "api-reference": [
+      {
+        "group": "Introduction",
+        "pages": ["openapi"]
+      }
+    ]
+  },
   "openapi": "openapi.yaml"
 }
