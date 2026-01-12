@@ -11,7 +11,9 @@
     "groups": [
       {
         "group": "Getting Started",
-        "pages": []
+        "pages": [
+          "getting-started/getting-started"
+        ]
       },
       {
         "group": "API Reference",
