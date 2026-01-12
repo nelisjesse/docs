@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "almond",
   "name": "ClientBox API",
   "colors": {
     "primary": "#007DFF",
@@ -35,5 +35,13 @@
   "appearance": {
     "strict": false,
     "default": "light"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Dashboard",
+        "href": "https://app.clientbox.co"
+      }
+    ]
   }
 }
