@@ -1,5 +1,6 @@
 {
   "name": "ClientBox API",
+  "theme": "mint",
   "colors": {
     "primary": "#0D99FF",
     "light": "#FFFFFF",
