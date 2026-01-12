@@ -1,18 +1,19 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Clientbox API",
+  "name": "ClientBox API",
   "colors": {
     "primary": "#007DFF"
   },
   "navigation": {
     "groups": [
       {
-        "group": "Getting Started",
+        "group": "API Reference",
         "pages": [
-          "getting-started/testpage"
+          "openapi"
         ]
       }
     ]
-  }
+  },
+  "openapi": "openapi.yaml"
 }
