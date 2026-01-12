@@ -23,7 +23,7 @@
       }
     ]
   },
-  "openapi": "openapi.yaml",
+  "openapi": "openapi.json",
   "favicon": {
     "light": "/images/CBicon.png",
     "dark": "/images/CBicon(1).png"
