@@ -10,16 +10,24 @@
   "navigation": {
     "groups": [
       {
+        "group": "Getting Started",
+        "pages": []
+      },
+      {
         "group": "API Reference",
-        "pages": [
-          "openapi"
-        ]
+        "pages": []
       }
     ]
   },
   "openapi": "openapi.yaml",
-  "favicon": "/images/CBicon.png",
-  "logo": "/images/Clientbox-def.png",
+  "favicon": {
+    "light": "/images/CBicon.png",
+    "dark": "/images/CBicon(1).png"
+  },
+  "logo": {
+    "light": "/images/Clientbox-def.png",
+    "dark": "/images/ClientBox(1).png"
+  },
   "appearance": {
     "strict": false,
     "default": "light"
