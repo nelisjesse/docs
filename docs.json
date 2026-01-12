@@ -11,15 +11,11 @@
     "groups": [
       {
         "group": "Getting Started",
-        "pages": [
-          "getting-started/getting-started"
-        ]
+        "pages": []
       },
       {
         "group": "API Reference",
-        "pages": [
-          "openapi"
-        ]
+        "pages": []
       }
     ]
   },
