@@ -11,11 +11,9 @@
     "groups": [
       {
         "group": "Getting Started",
-        "pages": []
-      },
-      {
-        "group": "API Reference",
-        "pages": []
+        "pages": [
+          "getting-started/introduction"
+        ]
       }
     ]
   },
