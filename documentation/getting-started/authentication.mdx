@@ -1,0 +1,70 @@
+---
+title: "Authentication"
+description: "The ClientBox API relies on API keys to authenticate requests. These keys allow your application to interact securely with our platform without sharing your password."
+mode: "wide"
+---
+
+## Security
+
+Your API keys carry full privileges to your account. Be sure to keep them secure!
+
+- **Do not** share your secret API keys in publicly accessible areas such as GitHub, client-side code, or front-end applications.
+- **Do not** expose keys in browser scripts. All API requests should be made from your own secure server (backend).
+
+## How to Authenticate
+
+The API uses the **Bearer Authentication** scheme. To authenticate a request, you must provide your API key in the `Authorization` header.
+
+## Header Format
+
+All API requests must include the following header:
+
+```
+Authorization: Bearer sk_live_YOUR_API_KEY
+```
+
+Replace `sk_live_YOUR_API_KEY` with your actual API key.Example Usage
+
+## Example Usage
+
+The following examples demonstrate how to set the Authorization header in various environments.
+
+## cURL
+
+```bash
+curl "https://api.clientbox.co/" \
+  -H "Authorization: Bearer sk_live_abcdef123456"
+```
+
+## Node.js (Axios)
+
+```node
+const axios = require('axios');
+
+axios.get('https://api.clientbox.co/', {
+  headers: {
+    'Authorization': 'Bearer sk_live_abcdef123456'
+  }
+});
+```
+
+## Python (Requests)
+
+```python
+import requests
+
+headers = {
+    "Authorization": "Bearer sk_live_abcdef123456"
+}
+
+response = requests.get("https://api.clientbox.co/", headers=headers)
+```
+
+## Failed Authentication
+
+If an API key is missing, malformed, or invalid, the API will respond with a `401 Unauthorized` status code.
+
+| **Status Code**    | **Meaning**       | **Reason**                                          |
+| :----------------- | :---------------- | :-------------------------------------------------- |
+| `200 OK`           | **Authenticated** | The API key is valid and the request was processed. |
+| `401 Unauthorized` | **Invalid Key**   | The key is missing, incorrect, or has been revoked. |

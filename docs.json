@@ -16,7 +16,8 @@
           {
             "group": "Getting Started",
             "pages": [
-              "getting-started/introduction"
+              "getting-started/introduction",
+              "documentation/getting-started/authentication"
             ]
           }
         ]
