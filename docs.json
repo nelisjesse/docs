@@ -3,7 +3,9 @@
   "theme": "mint",
   "name": "ClientBox API",
   "colors": {
-    "primary": "#007DFF"
+    "primary": "#007DFF",
+    "light": "#007DFF",
+    "dark": "#007DFF"
   },
   "navigation": {
     "groups": [
@@ -15,5 +17,11 @@
       }
     ]
   },
-  "openapi": "openapi.yaml"
+  "openapi": "openapi.yaml",
+  "favicon": "/images/CBicon.png",
+  "logo": "/images/Clientbox-def.png",
+  "appearance": {
+    "strict": false,
+    "default": "light"
+  }
 }
