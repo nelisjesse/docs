@@ -1,9 +1,9 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Documentation",
+  "name": "Clientbox API",
   "colors": {
-    "primary": "#0D9373"
+    "primary": "#007DFF"
   },
   "navigation": {
     "groups": [
