@@ -8,11 +8,17 @@
     "dark": "#007DFF"
   },
   "navigation": {
-    "groups": [
+    "tabs": [
       {
-        "group": "Getting Started",
-        "pages": [
-          "getting-started/introduction"
+        "tab": "Documentation",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "getting-started/introduction"
+            ]
+          }
         ]
       }
     ]
