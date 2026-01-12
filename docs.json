@@ -20,6 +20,11 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "square-terminal",
+        "openapi": "openapi.json"
       }
     ]
   },
