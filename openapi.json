@@ -2,20 +2,66 @@
   "openapi": "3.0.0",
   "info": {
     "title": "ClientBox API",
-    "version": "1.0",
-    "description": "Official API documentation for ClientBox."
+    "version": "1.1.0",
+    "description": "Welkom bij de ClientBox API documentatie.\n\nGebruik deze API om klanten te beheren, facturen te sturen en workflows te automatiseren vanuit je eigen applicatie.\n\n### Authenticatie\nAlle endpoints vereisen een `Bearer Token`. Voeg deze toe aan de header:\n`Authorization: Bearer JOUW_API_KEY`",
+    "contact": {
+      "name": "ClientBox Support",
+      "email": "support@clientbox.co"
+    }
   },
   "servers": [
     {
       "url": "https://api.clientbox.co/api/1.1/wf",
-      "description": "Production API"
+      "description": "Productie Server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "API Key"
+      }
+    },
+    "schemas": {
+      "Customer": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "cust_12345" },
+          "name": { "type": "string", "example": "Jan Jansen" },
+          "email": { "type": "string", "example": "jan@bedrijf.nl" }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "example": "error" },
+          "message": { "type": "string", "example": "Ongeldige input data." }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Customers",
+      "description": "Beheer je klantenbestand en contactgegevens."
+    },
+    {
+      "name": "Invoices",
+      "description": "Maak en verstuur facturen direct naar klanten."
     }
   ],
   "paths": {
     "/create-customer": {
       "post": {
-        "summary": "Create Customer",
-        "description": "Creates a new customer in ClientBox.",
+        "tags": ["Customers"],
+        "summary": "Nieuwe klant aanmaken",
+        "description": "Voegt een nieuwe klant toe aan je ClientBox database.\n\n**Let op:** Het e-mailadres moet uniek zijn. Als het al bestaat, krijg je een `409 Conflict` error terug.",
         "operationId": "createCustomer",
         "requestBody": {
           "required": true,
@@ -23,27 +69,28 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "email",
-                  "first_name",
-                  "last_name"
-                ],
+                "required": ["email", "first_name", "last_name"],
                 "properties": {
                   "first_name": {
                     "type": "string",
-                    "example": "John",
-                    "description": "First name"
+                    "description": "De voornaam van de klant.",
+                    "example": "Sophie"
                   },
                   "last_name": {
                     "type": "string",
-                    "example": "Doe",
-                    "description": "Last name"
+                    "description": "De achternaam van de klant.",
+                    "example": "de Vries"
                   },
                   "email": {
                     "type": "string",
                     "format": "email",
-                    "example": "john@example.com",
-                    "description": "Email address"
+                    "description": "Het zakelijke e-mailadres. Wordt gebruikt voor communicatie.",
+                    "example": "sophie@start-up.nl"
+                  },
+                  "company_name": {
+                    "type": "string",
+                    "description": "Optioneel: Bedrijfsnaam.",
+                    "example": "Tech B.V."
                   }
                 }
               }
@@ -52,16 +99,116 @@
         },
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Klant succesvol aangemaakt.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validatie fout.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-customer/{id}": {
+      "get": {
+        "tags": ["Customers"],
+        "summary": "Klant ophalen",
+        "description": "Haal de details op van een specifieke klant via hun unieke ID.",
+        "operationId": "getCustomer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Het unieke ID van de klant (bijv. `cust_123`).",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Klant gegevens.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Customer" }
+              }
+            }
+          },
+          "404": {
+            "description": "Klant niet gevonden."
+          }
+        }
+      }
+    },
+    "/create-invoice": {
+      "post": {
+        "tags": ["Invoices"],
+        "summary": "Factuur aanmaken",
+        "description": "Genereert een PDF factuur en stuurt deze (optioneel) direct per mail.",
+        "operationId": "createInvoice",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["customer_id", "amount", "currency"],
+                "properties": {
+                  "customer_id": {
+                    "type": "string",
+                    "description": "ID van de klant die de factuur krijgt.",
+                    "example": "cust_12345"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Totaalbedrag exclusief BTW.",
+                    "example": 150.50
+                  },
+                  "currency": {
+                    "type": "string",
+                    "description": "Valuta code (ISO 4217).",
+                    "enum": ["EUR", "USD", "GBP"],
+                    "example": "EUR"
+                  },
+                  "items": {
+                    "type": "array",
+                    "description": "Lijst met factuurregels.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "description": { "type": "string", "example": "Consultancy uren" },
+                        "price": { "type": "number", "example": 75.25 }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Factuur aangemaakt.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "success"
-                    }
+                    "invoice_id": { "type": "string", "example": "inv_998877" },
+                    "status": { "type": "string", "example": "sent" },
+                    "download_url": { "type": "string", "example": "https://clientbox.co/dl/inv_998877.pdf" }
                   }
                 }
               }
