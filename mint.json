@@ -1,5 +1,19 @@
 {
-  "name": "ClientBox Docs",
+  "name": "ClientBox API",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#007DFF",
+    "light": "#FFFFFF",
+    "dark": "#000000",
+    "anchors": {
+      "from": "#0D99FF",
+      "to": "#0D99FF"
+    }
+  },
   "navigation": [
     {
       "group": "API Reference",
