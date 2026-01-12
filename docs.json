@@ -36,7 +36,8 @@
   },
   "logo": {
     "light": "/images/Clientbox-def.png",
-    "dark": "/images/ClientBox(1).png"
+    "dark": "/images/ClientBox(1).png",
+    "href": "https://clientbox.co"
   },
   "appearance": {
     "strict": false,
